@@ -1,6 +1,7 @@
 ---
 import { locales } from '../config/locales';
 import { withBase } from '../config/site';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   locale: string;
@@ -9,21 +10,22 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<header class="border-b border-slate-200">
-  <div
-    class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-4"
-  >
-    <a href={withBase(`/${locale}`)} class="font-semibold text-slate-900"
-      >The Cheat Sheet</a
+<header class="border-b border-slate-200 dark:border-slate-800">
+  <div class="mx-auto flex max-w-3xl items-center justify-between px-4 py-4">
+    <a
+      href={withBase(`/${locale}`)}
+      class="flex items-center gap-2 font-semibold text-slate-900 dark:text-slate-100"
     >
-    <div class="flex items-center gap-4 text-sm">
-      <a
-        href={withBase(`/${locale}/search`)}
-        class="text-slate-500 hover:text-slate-900 hover:underline"
-      >
-        Search
-      </a>
-      <nav class="flex gap-3" aria-label="Locale">
+      <img src={withBase('/logo.svg')} alt="" class="h-7 w-7 dark:hidden" />
+      <img
+        src={withBase('/logo-inverse.svg')}
+        alt=""
+        class="hidden h-7 w-7 dark:block"
+      />
+      The Cheat Sheet
+    </a>
+    <div class="flex items-center gap-3">
+      <nav class="flex gap-3 text-sm" aria-label="Locale">
         {
           locales.map((l) => (
             <a
@@ -31,8 +33,8 @@ const { locale } = Astro.props;
               aria-current={l === locale ? 'page' : undefined}
               class={
                 l === locale
-                  ? 'font-semibold text-slate-900'
-                  : 'text-slate-500 hover:text-slate-900 hover:underline'
+                  ? 'font-semibold text-slate-900 dark:text-slate-100'
+                  : 'text-slate-500 hover:text-slate-900 hover:underline dark:text-slate-400 dark:hover:text-slate-100'
               }
             >
               {l}
@@ -40,6 +42,7 @@ const { locale } = Astro.props;
           ))
         }
       </nav>
+      <ThemeToggle />
     </div>
   </div>
 </header>
