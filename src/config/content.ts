@@ -58,7 +58,10 @@ export function parseCategoryId(id: string): CategoryParams {
   return { locale, category };
 }
 
-/** Capitalizes the first letter of a filesystem-derived name for display. */
+/** Title-cases a filesystem-derived name for display (e.g. "operating-systems" -> "Operating Systems"). */
 export function capitalize(value: string): string {
-  return value.charAt(0).toUpperCase() + value.slice(1);
+  return value
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }
