@@ -42,7 +42,7 @@ const user = { name: 'Ada', age: 36 };
 
 numbers.push(4); // add to end
 numbers.map((n) => n * 2); // [2, 4, 6, 8]
-numbers.filter((n) => n > 1); // [2, 3]
+numbers.filter((n) => n > 1); // [2, 3, 4]
 Object.keys(user); // ['name', 'age']
 Object.entries(user); // [['name', 'Ada'], ['age', 36]]
 ```
@@ -76,7 +76,7 @@ async function loadUser(id) {
   }
 }
 
-// Run requests in parallel:
+// Run requests in parallel (top-level await requires module context):
 const [a, b] = await Promise.all([fetchUser(1), fetchUser(2)]);
 ```
 

@@ -77,7 +77,7 @@ all_lowercase = all(name.islower() for name in names)
 ```bash
 python -m venv .venv
 source .venv/bin/activate      # macOS/Linux
-.venv\Scripts\activate         # Windows PowerShell
+.venv\Scripts\Activate.ps1     # Windows PowerShell
 python -m pip install requests
 python -m pip freeze > requirements.txt
 ```

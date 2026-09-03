@@ -82,12 +82,12 @@ type DirectionLiteral = 'up' | 'down' | 'left' | 'right';
 ## Utility Types
 
 ```ts
-Partial<User>; // all properties optional
-Required<User>; // all properties required
-Pick<User, 'id' | 'name'>; // subset of properties
-Omit<User, 'email'>; // all properties except these
-Readonly<User>; // all properties readonly
-Record<string, number>; // object type with string keys, number values
+type PartialUser = Partial<User>; // all properties optional
+type RequiredUser = Required<User>; // all properties required
+type PickUser = Pick<User, 'id' | 'name'>; // subset of properties
+type OmitUser = Omit<User, 'email'>; // all properties except these
+type ReadonlyUser = Readonly<User>; // all properties readonly
+type Scores = Record<string, number>; // object type with string keys, number values
 ```
 
 ## Type Narrowing
@@ -101,7 +101,7 @@ function printId(id: string | number) {
   }
 }
 
-function isUser(value: unknown): value is User {
+function hasId(value: unknown): value is { id: unknown } {
   return typeof value === 'object' && value !== null && 'id' in value;
 }
 ```

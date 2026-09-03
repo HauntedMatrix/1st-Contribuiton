@@ -48,8 +48,9 @@ loop {
     i += 1;
 }
 
-while n > 0 {
-    break;
+let mut remaining = 10;
+while remaining > 0 {
+    remaining -= 1;
 }
 
 for item in [1, 2, 3] {
@@ -127,11 +128,6 @@ enum Direction {
     West,
 }
 
-enum Option<T> {
-    Some(T),
-    None,
-}
-
 let maybe: Option<i32> = Some(42);
 match maybe {
     Some(v) => println!("{v}"),
@@ -153,7 +149,7 @@ struct Article {
 
 impl Summary for Article {
     fn summarize(&self) -> String {
-        let preview = &self.content[..self.content.len().min(20)];
+        let preview: String = self.content.chars().take(20).collect();
         format!("{preview}...")
     }
 }
@@ -228,9 +224,8 @@ if let Some(value) = maybe {
 
 // derive macro — generate common trait implementations
 #[derive(Debug, Clone, PartialEq)]
-struct Point {
-    x: f64,
-    y: f64,
+struct User {
+    name: String,
 }
 
 // Iterator methods
